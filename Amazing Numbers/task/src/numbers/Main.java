@@ -1,13 +1,23 @@
 package numbers;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Numero workWithNewNumber = new Numero(sc.nextInt());
-        System.out.println( workWithNewNumber.toString());
+        System.out.println("Enter a natural number:");
+        int input = sc.nextInt();
 
+        if (input < 0) {
+            System.out.println("This number is not natural!");
+
+        } else if (input == 0) {
+            System.out.println("This number is not natural!");
+        } else {
+            Numero workWithNewNumber = new Numero(input);
+            System.out.println(workWithNewNumber.toString());
+        }
 //        System.out.println("Enter a natural number:");
 //        String input = sc.next();
 //        int inputAsInt = Integer.parseInt(input);
@@ -40,15 +50,21 @@ class Numero {
         if (n % 2 == 0) {
             setEven(true);
             setOdd(false);
-        }
-        else {
+        } else {
             setEven(false);
             setOdd(true);
         }
     }
 
     public void isDuckMethod(int n) {
-        System.out.println("pusta metoda - drukuje liczbe: " + n);
+        String input = String.valueOf(n);
+
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i) == '0') {
+                setDuck(true);
+            }
+        }
+
     }
 
     public void isBuzzMethod(int n) {
@@ -60,7 +76,7 @@ class Numero {
 
         if (String.valueOf(n).charAt(String.valueOf(n).length() - 1) == '7') {
             setBuzz(true);
-         //   endsWithSeven = true;
+            //   endsWithSeven = true;
         }
         if (n % 7 == 0) {
             setBuzz(true);
@@ -91,9 +107,9 @@ class Numero {
 //                "Explanation:\n" +
 //                lastLine);
 
-    }
+        }
 
-}
+    }
 
 
     @Override
@@ -101,7 +117,7 @@ class Numero {
         isEvenOrOddMethod(numberInt);
         isBuzzMethod(numberInt);
         isDuckMethod(numberInt);
-        return "Property of " + getNumber() +
+        return "Properties of " + getNumber() +
                 "\neven: " + even +
                 "\nodd: " + odd +
                 "\nbuzz: " + buzz +
