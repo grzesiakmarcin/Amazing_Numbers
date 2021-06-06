@@ -6,31 +6,28 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter a natural number:");
-        int input = sc.nextInt();
+        System.out.println("Welcome to Amazing Numbers!\n" +
+                "\n" +
+                "Supported requests:\n" +
+                "- enter a natural number to know its properties;\n" +
+                "- enter 0 to exit." +
+                "\nEnter a request:");
 
-        if (input < 0) {
-            System.out.println("This number is not natural!");
 
-        } else if (input == 0) {
-            System.out.println("This number is not natural!");
-        } else {
-            Numero workWithNewNumber = new Numero(input);
-            System.out.println(workWithNewNumber.toString());
+        while (true) {
+            int input = sc.nextInt();
+            if (input < 0) {
+                System.out.println("The first parameter should be a natural number or zero.");
+
+            } else if (input == 0) {
+                System.out.println("Goodbye!");
+                System.exit(1);
+            } else {
+                Numero workWithNewNumber = new Numero(input);
+                System.out.println(workWithNewNumber.toString());
+                System.out.println("\nEnter a request:");
+            }
         }
-//        System.out.println("Enter a natural number:");
-//        String input = sc.next();
-//        int inputAsInt = Integer.parseInt(input);
-//
-//        if (inputAsInt == 0) {
-//            System.out.println(inputAsInt + " is not natural.");
-//            System.exit(1);
-//        } else if (inputAsInt < 0) {
-//            System.out.println("This number is not natural!");
-//            System.exit(1);
-//        }
-
-
     }
 }
 
@@ -41,6 +38,7 @@ class Numero {
     boolean odd;
     boolean buzz;
     boolean duck;
+    boolean palimdromic;
 
     public Numero(int number) {
         this.numberInt = number;
@@ -80,37 +78,14 @@ class Numero {
         }
         if (n % 7 == 0) {
             setBuzz(true);
-//            divisibleBy7 = true;
-//        }
-
-//     String secondline = isBuzzNumber ? "It is a Buzz number.\n" : "It is not a Buzz number.\n";
-//
-//      String explanation = "";
-//        if (isBuzzNumber == false) {
-//          //  explanation = " is neither divisible by 7 nor it ends with 7.";
-//        }
-//        if (isBuzzNumber && endsWithSeven) {
-//       //     explanation = " is ends with 7";
-//        }
-//        if (isBuzzNumber && divisibleBy7) {
-//        //    explanation = " is divisible by 7.";
-//        }
-//        if (isBuzzNumber && endsWithSeven && divisibleBy7) {
-//       //     explanation = " is divisible by 7 and it ends with 7.";
-//        }
-
-//
-//        String lastLine = n + explanation;
-//
-//        System.out.println("This number is " + OddOrEven + ".\n" +
-//                secondline +
-//                "Explanation:\n" +
-//                lastLine);
 
         }
 
     }
 
+    public void isPalindromic(int n) {
+
+    }
 
     @Override
     public String toString() {
@@ -121,7 +96,8 @@ class Numero {
                 "\neven: " + even +
                 "\nodd: " + odd +
                 "\nbuzz: " + buzz +
-                "\nduck :" + duck;
+                "\nduck :" + duck +
+                "\npalindomic: " + palimdromic;
     }
 
 
