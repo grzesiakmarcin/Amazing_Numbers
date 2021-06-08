@@ -1,6 +1,5 @@
 package numbers;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -15,9 +14,11 @@ public class Main {
 
 
         while (true) {
-            int input = sc.nextInt();
+            String inputS = sc.next();
+            long input = Long.valueOf(inputS);
             if (input < 0) {
-                System.out.println("The first parameter should be a natural number or zero.");
+                System.out.println("The first parameter should be a natural number or zero.\n"
+                        + "Enter a request:");
 
             } else if (input == 0) {
                 System.out.println("Goodbye!");
@@ -33,18 +34,18 @@ public class Main {
 
 class Numero {
 
-    int numberInt;
+    long numberLong;
     boolean even;
     boolean odd;
     boolean buzz;
     boolean duck;
     boolean palimdromic;
 
-    public Numero(int number) {
-        this.numberInt = number;
+    public Numero(long number) {
+        this.numberLong = number;
     }
 
-    public void isEvenOrOddMethod(int n) {
+    public void isEvenOrOddMethod(long n) {
         if (n % 2 == 0) {
             setEven(true);
             setOdd(false);
@@ -54,7 +55,7 @@ class Numero {
         }
     }
 
-    public void isDuckMethod(int n) {
+    public void isDuckMethod(long n) {
         String input = String.valueOf(n);
 
         for (int i = 1; i < input.length(); i++) {
@@ -65,7 +66,7 @@ class Numero {
 
     }
 
-    public void isBuzzMethod(int n) {
+    public void isBuzzMethod(long n) {
 
 
         boolean isBuzzNumber = false;
@@ -83,30 +84,35 @@ class Numero {
 
     }
 
-    public void isPalindromic(int n) {
-
+    public void isPalindromic(long n) {
+        String val = String.valueOf(n);
+        StringBuilder sb = new StringBuilder(val).reverse();
+        if (sb.toString().equals(val)) {
+            palimdromic = true;
+        } else palimdromic = false;
     }
 
     @Override
     public String toString() {
-        isEvenOrOddMethod(numberInt);
-        isBuzzMethod(numberInt);
-        isDuckMethod(numberInt);
+        isEvenOrOddMethod(numberLong);
+        isBuzzMethod(numberLong);
+        isDuckMethod(numberLong);
+        isPalindromic(numberLong);
         return "Properties of " + getNumber() +
-                "\neven: " + even +
-                "\nodd: " + odd +
-                "\nbuzz: " + buzz +
-                "\nduck :" + duck +
-                "\npalindomic: " + palimdromic;
+                "\n      even: " + even +
+                "\n       odd: " + odd +
+                "\n      buzz: " + buzz +
+                "\n     duck : " + duck +
+                "\nPALINDROMIC: " + palimdromic;
     }
 
 
-    public int getNumber() {
-        return numberInt;
+    public long getNumber() {
+        return numberLong;
     }
 
     public void setNumber(int number) {
-        this.numberInt = number;
+        this.numberLong = number;
     }
 
     public boolean isEven() {
